@@ -61,7 +61,7 @@ Route::post('/teacher/message/edit/{id}', [MessageController::class,'editMessage
 Route::get('/teacher/assignment', [TeacherController::class,'assignment']);
 Route::post('/teacher/assignment/post', [AssignmentController::class,'post']);
 Route::get('/teacher/assignment/show/{id}', [SubmitController::class,'show']);
-Route::get('/teacher/assignment/submit/download/{id}', [SubmitController::class,'']);
+Route::get('/teacher/assignment/submit/download/{id}', [SubmitController::class,'download']);
 
 // Challenge Controller
 Route::get('/teacher/challenge', [TeacherController::class,'challenge']);

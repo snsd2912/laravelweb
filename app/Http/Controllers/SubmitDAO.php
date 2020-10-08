@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Submit;
+use Illuminate\Support\Facades\DB;
 
 class SubmitDAO extends Controller
 {
@@ -16,7 +17,13 @@ class SubmitDAO extends Controller
     }
 
     function getSubmitByAssignmentId($id){
-        return Submit::where('assignment_id',$id)->get();
+        $users = DB::table('users')
+            ->join('submit', 'users.id', '=', 'submit.student_id')
+            ->select('submit.*', DB::raw('users.name as studentname'))
+            ->where('submit.assignment_id','=',$id)
+            ->get();
+
+        return $users;
     }
 
     function upload($submit){

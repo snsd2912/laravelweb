@@ -21,7 +21,7 @@
                 <!-- process each row -->
                 @foreach ($submit_list as $submit)
                     <tr>
-                        <th> {{$submit}} </th>
+                        <th> {{$submit->studentname}} </th>
                         <th> {{$submit->created_at}} </th>
                         <th> <a href='/teacher/assignment/submit/download/{{$submit->id}}'> Download </a> </th>
                     </tr>

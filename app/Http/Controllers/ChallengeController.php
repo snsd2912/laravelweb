@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Challenge;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
 class ChallengeController extends Controller
 {
@@ -48,6 +50,15 @@ class ChallengeController extends Controller
 
     // check result challenge
     function showResult(Request $request,$id){
-        
+        // $namespace = 'App\Http\Controllers';
+        // $controller1 = app()->make($namespace.'\ChallengeDAO');
+        // $challenge = $controller1->callAction('getChallengeById',[$id]);
+        // $result = $request->get('result');
+        // $filename = $challenge
+        $path = public_path('app/public/challenge');
+
+        $files = scandir($path);
+  
+        echo $files;
     }
 }
