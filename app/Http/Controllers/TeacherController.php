@@ -100,13 +100,13 @@ class TeacherController extends Controller
 
     
 
-    function assignment(){
+    function assignment(Request $request){
         $namespace = 'App\Http\Controllers';
         $controller = app()->make($namespace.'\AssignmentDAO');
         return view('teacher.assignment')->with('assignment_list', $controller->callAction('getAssignmentList',[$request]) );
     }
 
-    function challenge(){
+    function challenge(Request $request){
         $namespace = 'App\Http\Controllers';
         $controller = app()->make($namespace.'\ChallengeDAO');
         return view('teacher.challenge')->with('challenge_list', $controller->callAction('getChallengeList',[$request]) );

@@ -5,6 +5,8 @@ use App\Http\Controllers\MainController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\MessageController;
+use App\Http\Controllers\AssignmentController;
+use App\Http\Controllers\ChallengeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -56,6 +58,8 @@ Route::get('/teacher/assignment/show/{id}', [AssignmentController::class,'show']
 
 // Challenge Controller
 Route::get('/teacher/challenge', [TeacherController::class,'challenge']);
+Route::post('/teacher/challenge/post', [ChallengeController::class,'post']);
+Route::get('/teacher/challenge/show/{id}', [ChallengeController::class,'show']);
 
 // Student Controller
 
