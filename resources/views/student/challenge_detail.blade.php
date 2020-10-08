@@ -13,7 +13,8 @@
         
         <a href="/student/challenge" class="add">Back</a>
 
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="/student/challenge/result/{{$challenge->id}}" method="post" enctype="multipart/form-data">
+            @csrf
             <p style="text-align:center;">Challenge's Name: {{$challenge->title}}</p>
             <span style="text-align:center;display:block;">Hint: {{$challenge->hint}} </span> <br><br>
             <span style="text-align:center;display:block;">Type your result below:</span><br>

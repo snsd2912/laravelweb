@@ -13,10 +13,19 @@ class MessageDAO extends Controller
     
     // get message list from two user
     function getMessageList($teacher_id, $student_id){
-        return Message::where(['student_id' => $student_id,'teacher_id' => $teacher_id])
-                    -> orwhere(['student_id' => $teacher_id, 'teacher_id' => $student_id])
-                    -> orderBy('created_at')
-                    -> get();
+        // return Message::where(['student_id' => $student_id,'teacher_id' => $teacher_id])
+        //                 -> orwhere(['student_id' => $teacher_id, 'teacher_id' => $student_id])
+        //                 -> orderBy('created_at')
+        //                 -> get();
+
+        return Message::where(function ($query) use ($teacher_id,$student_id) {
+                        $query->where('student_id',$student_id)
+                            ->where('teacher_id',$teacher_id);
+                    })->orWhere(function($query) use ($teacher_id,$student_id) {
+                        $query->where('student_id',$teacher_id)
+                            ->where('teacher_id',$student_id);
+                    })->orderBy('created_at')
+                    ->get();
     }
 
     // add new message

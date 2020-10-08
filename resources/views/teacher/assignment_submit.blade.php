@@ -10,7 +10,7 @@
 @section('content')
     <!-- list submitted files tab -->
     <div class="content" id="assignment">
-        <a href="assignment.php" class="add">Back</a>
+        <a href="/teacher/assignment" class="add">Back</a>
         <div class="assignment-list">
             <table>
                 <tr>
@@ -20,11 +20,12 @@
                 </tr>
                 <!-- process each row -->
                 @foreach ($submit_list as $submit)
-                <tr>
-                <th> $submit </th>
-                <th> $submit->created_at </th>
-                <th> <a href='/teacher/assignment/submit/download/{{$submit->id}}'> Download </a> </th>
-                </tr>
+                    <tr>
+                        <th> {{$submit}} </th>
+                        <th> {{$submit->created_at}} </th>
+                        <th> <a href='/teacher/assignment/submit/download/{{$submit->id}}'> Download </a> </th>
+                    </tr>
+                @endforeach
             </table>
         </div>
     </div>

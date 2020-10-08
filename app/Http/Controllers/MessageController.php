@@ -16,7 +16,7 @@ class MessageController extends Controller
         $controller2 = app()->make($namespace.'\MessageDAO');
         // echo $id."---------".session('id')."-------";
         // echo $controller1->callAction('getUserById',[$id]);
-        // echo $controller2->callAction('getMessageList',[$id,session('id')]);
+        //echo $controller2->callAction('getMessageList',[$id,session('id')]);
         return view(Route::currentRouteName().'.message')->with(['user'=>$controller1->callAction('getUserById',[$id]),
                     'messagelist'=>$controller2->callAction('getMessageList',[$id,session('id')])] );
     }

@@ -21,7 +21,7 @@
 		<div class="row" style="height:550px;overflow: scroll;">
             @foreach ($messagelist as $message)
                 @if( $message->teacher_id == session('id'))
-                    <form action='/teacher/user/message/edit/{{$user->id}}' method='POST'>
+                    <form action='/teacher/message/edit/{{$user->id}}' method='POST'>
                         @csrf
                         <span> {{session('username')}} </span><br>
                         <input type='text' name='message' value='{{$message->content}}' >
@@ -39,7 +39,7 @@
             @endforeach
 		</div>
         <div class="row">
-            <form action="/teacher/user/message/send/{{$user->id}}" method="POST">
+            <form action="/teacher/message/send/{{$user->id}}" method="POST">
                 @csrf
                 <span class="err"> {{session('err')}} </span>
                 <input type="text" name="newmessage">

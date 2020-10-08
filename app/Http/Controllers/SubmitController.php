@@ -41,7 +41,14 @@ class SubmitController extends Controller
     function show($id){
         $namespace = 'App\Http\Controllers';
         $controller1 = app()->make($namespace.'\SubmitDAO');
-        $assignment = $controller1->callAction('getSubmitByAssignmentId',[$id]); 
+        $submit_list = $controller1->callAction('getSubmitByAssignmentId',[$id]); 
         return view('teacher.assignment_submit')->with(['submit_list'=>$submit_list]);
+    }
+
+    
+    function download($id){
+        
+        $file = Submit::where('id',$id)->get()->first();
+        return response()->download(storage_path('app/public/submit/'.$file->filename));
     }
 }

@@ -53,14 +53,15 @@ Route::get('/teacher/student/delete/{id}', [TeacherController::class,'studentDel
 
 // Message Controller
 Route::get('/teacher/user', [TeacherController::class,'user']);
-Route::get('/teacher/user/message/{id}', [MessageController::class,'message'])->name('teacher');
-Route::post('/teacher/user/message/send/{id}', [MessageController::class,'sendMessage'])->name('teacher');
-Route::post('/teacher/user/message/edit/{id}', [MessageController::class,'editMessage'])->name('teacher');
+Route::get('/teacher/message/{id}', [MessageController::class,'message'])->name('teacher');
+Route::post('/teacher/message/send/{id}', [MessageController::class,'sendMessage'])->name('teacher');
+Route::post('/teacher/message/edit/{id}', [MessageController::class,'editMessage'])->name('teacher');
 
 // Assignment Controller
 Route::get('/teacher/assignment', [TeacherController::class,'assignment']);
 Route::post('/teacher/assignment/post', [AssignmentController::class,'post']);
 Route::get('/teacher/assignment/show/{id}', [SubmitController::class,'show']);
+Route::get('/teacher/assignment/submit/download/{id}', [SubmitController::class,'']);
 
 // Challenge Controller
 Route::get('/teacher/challenge', [TeacherController::class,'challenge']);
@@ -79,9 +80,9 @@ Route::get('/student/index', [StudentController::class,'index']);
 
 // user and message
 Route::get('/student/user', [StudentController::class,'user']);
-// Route::get('/student/user/message/{id}', [MessageController::class,'message'])->name('student');
-// Route::post('/student/user/message/send/{id}', [MessageController::class,'sendMessage'])->name('student');
-// Route::post('/student/user/message/edit/{id}', [MessageController::class,'editMessage'])->name('student');
+Route::get('/student/user/message/{id}', [MessageController::class,'message'])->name('student');
+Route::post('/student/user/message/send/{id}', [MessageController::class,'sendMessage'])->name('student');
+Route::post('/student/user/message/edit/{id}', [MessageController::class,'editMessage'])->name('student');
 
 // assignment
 Route::get('/student/assignment', [StudentController::class,'assignment']);

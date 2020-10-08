@@ -18,7 +18,7 @@
 			@foreach ($userlist as $user)
                 <tr>
                     <th> {{ $user->name }} </th>
-                    <th> <a href='/teacher/user/message/{{ $user->id }}'> Watch more detail </a> </th>
+                    <th> <a href='/teacher/message/{{ $user->id }}'> Watch more detail </a> </th>
                 </tr>
             @endforeach
 		</table>
