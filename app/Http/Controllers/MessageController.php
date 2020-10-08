@@ -5,14 +5,19 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Message;
+use Illuminate\Support\Facades\Route;
 
 class MessageController extends Controller
 {
     function message($id){
+
         $namespace = 'App\Http\Controllers';
         $controller1 = app()->make($namespace.'\UserDAO');
         $controller2 = app()->make($namespace.'\MessageDAO');
-        return view('teacher.message')->with(['user'=>$controller1->callAction('getUserById',[$id]),
+        // echo $id."---------".session('id')."-------";
+        // echo $controller1->callAction('getUserById',[$id]);
+        // echo $controller2->callAction('getMessageList',[$id,session('id')]);
+        return view(Route::currentRouteName().'.message')->with(['user'=>$controller1->callAction('getUserById',[$id]),
                     'messagelist'=>$controller2->callAction('getMessageList',[$id,session('id')])] );
     }
 
@@ -28,11 +33,11 @@ class MessageController extends Controller
         
         try{
             $controller2->callAction('store',[$newmessage]);
-            return view('teacher.message')->with(['user'=>$controller1->callAction('getUserById',[$id]),
+            return view(Route::currentRouteName().'.message')->with(['user'=>$controller1->callAction('getUserById',[$id]),
                         'messagelist'=>$controller2->callAction('getMessageList',[$id,session('id')])] );
         }
         catch(Throwable $e){
-            return view('teacher.message')->with(['user'=>$controller1->callAction('getUserById',[$id]),
+            return view(Route::currentRouteName().'.message')->with(['user'=>$controller1->callAction('getUserById',[$id]),
                         'messagelist'=>$controller2->callAction('getMessageList',[$id,session('id')]),
                         'err'=>'Something went wrong. Try again']);
         }    

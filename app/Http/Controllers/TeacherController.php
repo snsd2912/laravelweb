@@ -60,7 +60,7 @@ class TeacherController extends Controller
         $request->validate([
             'usrname'     =>   'required',
             'name'         =>   'required',
-            'email'        =>   'required|regex:/^.+@.+$/i',
+            'email'        =>   'required|unique:users|regex:/^.+@.+$/i',
             'phone'        =>   'required|starts_with:0|size:10'
         ]);
 

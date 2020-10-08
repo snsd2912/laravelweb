@@ -8,10 +8,19 @@
 @stop
 
 @section('content')
-    <div class="content" id="home">
-        <div style="position:absolute;top:50%;left:50%;transform:transfer(-50%,-50%);">
-            <p style="font-size:30px;font-style:bold;">YOU ARE A STUDENT</p>
-        </div>
-    </div>
+    <div class="content" style="padding: 50px!important;">
+		<table style="width:100%!important;">
+			<tr>
+				<th> Username </th>
+				<th> </th>
+			</tr>
+			@foreach ($userlist as $user)
+                <tr>
+                    <th> {{ $user->name }} </th>
+                    <th> <a href='/student/user/message/{{ $user->id }}'> Watch more detail </a> </th>
+                </tr>
+            @endforeach
+		</table>
+	</div>
 
 @stop

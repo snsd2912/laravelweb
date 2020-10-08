@@ -8,10 +8,44 @@
 @stop
 
 @section('content')
-    <div class="content" id="home">
-        <div style="position:absolute;top:50%;left:50%;transform:transfer(-50%,-50%);">
-            <p style="font-size:30px;font-style:bold;">YOU ARE A STUDENT</p>
-        </div>
-    </div>
+    
+<div class="container">
+		<div class="row">
+			<a href="/student/user" class="add" style="float:right;">Back</a>
+		</div>
+		<div class="row"> 
+			<p> Name: {{ $user->name }}</p>
+			<p> Phonenumber: {{ $user->phone }} </p>
+			<p> Email: {{ $user->email }}</p>
+		</div>
+		<div class="row" style="height:550px;overflow: scroll;">
+            @foreach ($messagelist as $message)
+                @if( $message->teacher_id == session('id'))
+                    <form action='/student/user/message/edit/{{$user->id}}' method='POST'>
+                        @csrf
+                        <span> {{session('username')}} </span><br>
+                        <input type='text' name='message' value='{{$message->content}}' >
+                        <input type='hidden' name='id' value='{{$message->id}}' />
+                        <input type='submit' name='action' value='Edit'>
+                        <input type='submit' name='action' value='Delete'>
+                    </form>
+                @else
+                    <form action='' method='POST'>
+                        @csrf
+                        <span> {{$user->usrname}} </span><br>
+                        <input type='text' name='message' value='{{$message->content}}' disabled>
+                    </form>
+                @endif
+            @endforeach
+		</div>
+        <div class="row">
+            <form action="/student/user/message/send/{{$user->id}}" method="POST">
+                @csrf
+                <span class="err"> {{session('err')}} </span>
+                <input type="text" name="newmessage">
+                <input type="submit" name="send" value="Send">
+            </form> 
+        </div>	
+	</div>
 
 @stop

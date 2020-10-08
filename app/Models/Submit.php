@@ -22,13 +22,13 @@ class Submit extends Model
         'id',
         'title',
         'filename',
-        'teacher_id',
+        'student_id',
         'assignment_id'
     ];
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'teacher_id');
+        return $this->belongsTo('App\Models\User', 'student_id');
     }
 
     public function assignment()

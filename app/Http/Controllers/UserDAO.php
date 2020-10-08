@@ -68,12 +68,22 @@ class UserDAO extends Controller
     }
 
     /**
+     * Check password
+     *
+     */
+    public function checkPwd($oldpwd, $id){
+        $user = User::find($id);
+        if (Hash::check($oldpwd, $user->password)) return true;
+        return false;
+    }
+
+    /**
      * Update password
      *
      */
-    public function updatePwd($newuser, $id){
+    public function updatePwd($newpwd, $id){
         $user = User::find($id);
-        $user->password = bcrypt($newuser->password);
+        $user->password = bcrypt($newpwd);
 
         $user->save();
     }

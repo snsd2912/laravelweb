@@ -50,6 +50,7 @@ class MainController extends Controller
                 
                 if($result->pos == 2){
                     // $request->session->put('id',$result->id);
+                    session(['id' => $result->id]);
                     session(['username' => $result->usrname]);
                     return redirect('/student');
                 }

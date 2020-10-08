@@ -7,6 +7,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\ChallengeController;
+use App\Http\Controllers\SubmitController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,6 +35,12 @@ Route::get('/teacher', [MainController::class,'sucesslogin'])->name('teacher');
 
 Route::get('/student', [MainController::class,'sucesslogin'])->name('student');
 
+
+// ------------------------------------------------------------
+// -------------------- TEACHER -------------------------------
+// ------------------------------------------------------------
+
+
 // Teacher Controller
 Route::get('/teacher/index', [TeacherController::class,'index']);
 Route::get('/teacher/student', [TeacherController::class,'student']);
@@ -44,29 +51,54 @@ Route::post('/teacher/student/add',[TeacherController::class,'studentAdd']);
 Route::post('/teacher/student/edit/{id}', [TeacherController::class,'studentEdit']);
 Route::get('/teacher/student/delete/{id}', [TeacherController::class,'studentDelete']);
 
-Route::get('/teacher/user', [TeacherController::class,'user']);
-
 // Message Controller
-Route::get('/teacher/user/message/{id}', [MessageController::class,'message']);
-Route::post('/teacher/user/message/send/{id}', [MessageController::class,'sendMessage']);
-Route::post('/teacher/user/message/edit/{id}', [MessageController::class,'editMessage']);
+Route::get('/teacher/user', [TeacherController::class,'user']);
+Route::get('/teacher/user/message/{id}', [MessageController::class,'message'])->name('teacher');
+Route::post('/teacher/user/message/send/{id}', [MessageController::class,'sendMessage'])->name('teacher');
+Route::post('/teacher/user/message/edit/{id}', [MessageController::class,'editMessage'])->name('teacher');
 
 // Assignment Controller
 Route::get('/teacher/assignment', [TeacherController::class,'assignment']);
 Route::post('/teacher/assignment/post', [AssignmentController::class,'post']);
-Route::get('/teacher/assignment/show/{id}', [AssignmentController::class,'show']);
+Route::get('/teacher/assignment/show/{id}', [SubmitController::class,'show']);
 
 // Challenge Controller
 Route::get('/teacher/challenge', [TeacherController::class,'challenge']);
 Route::post('/teacher/challenge/post', [ChallengeController::class,'post']);
 Route::get('/teacher/challenge/show/{id}', [ChallengeController::class,'show']);
 
+
+// ------------------------------------------------------------
+// -------------------- STUDENT -------------------------------
+// ------------------------------------------------------------
+
+
 // Student Controller
 
 Route::get('/student/index', [StudentController::class,'index']);
+
+// user and message
 Route::get('/student/user', [StudentController::class,'user']);
+// Route::get('/student/user/message/{id}', [MessageController::class,'message'])->name('student');
+// Route::post('/student/user/message/send/{id}', [MessageController::class,'sendMessage'])->name('student');
+// Route::post('/student/user/message/edit/{id}', [MessageController::class,'editMessage'])->name('student');
+
+// assignment
 Route::get('/student/assignment', [StudentController::class,'assignment']);
+Route::get('/student/assignment/download/{id}', [AssignmentController::class,'download']);
+Route::get('/student/assignment/show/{id}', [AssignmentController::class,'show']);
+Route::post('/student/assignment/submit/{id}', [SubmitController::class,'submit']);
+
+// challenge
 Route::get('/student/challenge', [StudentController::class,'challenge']);
+Route::get('/student/challenge/detail/{id}', [ChallengeController::class,'showDetail']);
+Route::post('/student/challenge/result/{id}', [ChallengeController::class,'showResult']);
+
+// change password
 Route::get('/student/changepwd', [StudentController::class,'changepwd']);
+Route::post('/student/changepwd/change', [StudentController::class,'changePassword']);
+
+// Change info
 Route::get('/student/changeinfo', [StudentController::class,'changeinfo']);
+Route::post('/student/changeinfo/change', [StudentController::class,'changeInfomation']);
 

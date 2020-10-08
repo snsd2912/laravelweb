@@ -11,6 +11,10 @@ class AssignmentDAO extends Controller
         return Assignment::all();
     }
 
+    function getAssignmentById($id){
+        return Assignment::where('id',$id)->get()->first();
+    }
+
     function upload($assignment ){
         $assign = new Assignment();
         $assign->title = $assignment->title;
