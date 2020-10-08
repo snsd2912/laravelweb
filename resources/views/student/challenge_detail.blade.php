@@ -20,6 +20,9 @@
             <span style="text-align:center;display:block;">Type your result below:</span><br>
             <input style="position: relative;left: 50%; transform: translateX(-50%);" type="input" id="result" name="result"><br><br>
 			<input type="submit" value="Submit" name="submit"><br><br>
+            @if (session('message')) 
+                <span class="err"> {{ session('message') }} </span><br>
+            @endif
         </form>    
     </div>
 @stop

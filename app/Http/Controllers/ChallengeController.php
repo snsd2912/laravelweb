@@ -49,16 +49,22 @@ class ChallengeController extends Controller
     }
 
     // check result challenge
-    function showResult(Request $request,$id){
-        // $namespace = 'App\Http\Controllers';
-        // $controller1 = app()->make($namespace.'\ChallengeDAO');
-        // $challenge = $controller1->callAction('getChallengeById',[$id]);
-        // $result = $request->get('result');
-        // $filename = $challenge
-        $path = public_path('app/public/challenge');
+    function checkResult(Request $request,$id){
+        $namespace = 'App\Http\Controllers';
+        $controller1 = app()->make($namespace.'\ChallengeDAO');
+        $challenge = $controller1->callAction('getChallengeById',[$id]);
+        $result = $request->get('result');
+
+        $path = storage_path('app/public/challenge');
 
         $files = scandir($path);
   
-        echo $files;
+        foreach($files as $file){
+            $arr = explode('.',$file);
+            if($challenge->title == $arr[0] && $arr[1] == $result){
+                return view('student.challenge_result')->with(['chaid'=>$id,'filename'=>$file]);
+            }
+        }
+        return back()->with('message','Wrong answer'); 
     }
 }

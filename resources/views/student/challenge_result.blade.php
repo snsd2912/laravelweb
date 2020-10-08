@@ -10,11 +10,21 @@
 @section('content')
     <!-- assignment tab -->
     <div class="content">
-        <a href="/student/challenge/detail/{{ }}" class="add">Back</a>
+        <a href="/student/challenge/detail/{{$chaid}}" class="add">Back</a>
 
         <div>
             <p>Your answer is correct! Here is the file content: </p>
             <!-- read file -->
+            @php
+                $path = storage_path('app/public/challenge');
+                $file = fopen($path.'/'.$filename,"r");
+                while(! feof($file))
+                {
+                    echo fgets($file). "<br>";
+                }
+                
+                fclose($file);
+            @endphp
         </div>  
     </div>
 @stop

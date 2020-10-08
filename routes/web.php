@@ -93,7 +93,7 @@ Route::post('/student/assignment/submit/{id}', [SubmitController::class,'submit'
 // challenge
 Route::get('/student/challenge', [StudentController::class,'challenge']);
 Route::get('/student/challenge/detail/{id}', [ChallengeController::class,'showDetail']);
-Route::post('/student/challenge/result/{id}', [ChallengeController::class,'showResult']);
+Route::post('/student/challenge/result/{id}', [ChallengeController::class,'checkResult']);
 
 // change password
 Route::get('/student/changepwd', [StudentController::class,'changepwd']);
